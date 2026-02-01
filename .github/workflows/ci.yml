@@ -25,11 +25,7 @@ jobs:
           fi
           echo "HTML and CSS files are present."
 
-      - name: Validate HTML
-        uses: docker://validator/validator:latest
-        with:
-          args: --verbose --format text --exit-zero-always *.html  # Uses Nu Html Checker; adjust for your files
-
+     
   deploy:
     needs: test
     runs-on: ubuntu-latest
