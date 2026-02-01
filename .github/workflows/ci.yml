@@ -26,6 +26,11 @@ jobs:
         run: |
           test -f index.html
           echo "HTML check passed!"
+          
+      - name: Verify CSS exists
+        run: |
+          test -f style.css
+          echo "CSS check passed!"
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
