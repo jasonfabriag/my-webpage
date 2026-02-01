@@ -286,7 +286,7 @@ html {
 @media screen and (max-width: 1500px) {
     .hero{
         height: 550px !important;;
-        background-image: url("G2w90IKWIAA36nN.jpg");
+        background-image: url("images/G2w90IKWIAA36nN.jpg");
     }
     .hero-description{
         height: 550px
@@ -315,7 +315,7 @@ html {
     }
     .hero{
         height: 420px !important;
-        background-image: url("G2w90IKWIAA36nN.jpg");
+        background-image: url("images/G2w90IKWIAA36nN.jpg");
     }
     .hero-description{
         height: 420px;
@@ -464,3 +464,4 @@ padding-top:20px;
     
 
 }
+
