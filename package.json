@@ -1,7 +1,0 @@
-{
-  "name": "my-webpage",
-  "scripts": {
-    "build": "echo Build successful!",
-    "test:html": "npx html-validate index.html"
-  }
-}
