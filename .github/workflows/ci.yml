@@ -1,49 +1,51 @@
-name: CI for Webpage
+name: CI/CD for Static Website
 
 on:
   push:
     branches: ["main"]
-  pull_request:
-    branches: ["main"]
 
 jobs:
-  build:
+  test-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    # Step 1: Download the code
-    - name: Checkout repository
+
+    # Step 1: Checkout code
+    - name: Checkout code
       uses: actions/checkout@v4
 
-    # Step 2: Show project files (for checking)
-    - name: List files
-      run: ls -R
+    # Step 2: Stop if any command fails
+    - name: Enable strict mode
+      run: set -e
 
-    # Step 3: Check if main files exist
+    # Step 3: Check required files
     - name: Check required files
       run: |
         if [ ! -f index.html ]; then
-          echo "❌ index.html not found!"
+          echo "❌ index.html is missing!"
           exit 1
         fi
 
         if [ ! -f style.css ]; then
-          echo "❌ style.css not found!"
+          echo "❌ style.css is missing!"
           exit 1
         fi
 
-        echo "✅ Required files found!"
+        echo "✅ Required files found"
 
-    # Step 4: Validate HTML
+    # Step 4: Validate HTML (fail on error)
     - name: Validate HTML
       run: |
         sudo apt-get update
         sudo apt-get install -y tidy
 
-        tidy -e index.html || true
+        tidy -e index.html
 
-        echo "✅ HTML check finished!"
+        echo "✅ HTML validation passed"
 
-    # Step 5: Success message
-    - name: Build completed
-      run: echo "🎉 Webpage passed CI checks!"
+    # Step 5: Deploy (only if all above passed)
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./
