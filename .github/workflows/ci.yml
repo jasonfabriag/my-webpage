@@ -12,7 +12,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
+      - name: List files
+        run: ls -R
       - name: Check for HTML and CSS files
         run: |
           if [ ! -f "*.html" ]; then
