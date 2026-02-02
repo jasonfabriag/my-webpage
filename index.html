@@ -157,8 +157,29 @@
       }
     }
     </script>
+
+          <!-- Modal background -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <img src="images/banner.jpg" alt="Banner" class="modal-image">
+  </div>
+</div>
+<script>
+window.onload = function() {
+  document.getElementById("modal").style.display = "block";
+};
+</script>
+<script>
+const modal = document.getElementById("modal");
+
+modal.onclick = function() {
+  modal.style.display = "none";
+};
+</script>
+
 </body>
 </html>
+
 
 
 
